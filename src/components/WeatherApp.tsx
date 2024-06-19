@@ -6,6 +6,7 @@ import Forecast from './Forecast';
 import WeatherCard from './WeatherCard';
 import TemperatureDisplay from './TemperatureDisplay';
 import { fetchWeather } from '../utils/fetchWeather';
+import { CITIES, TOMORROW } from '../constants'
 
 interface WeatherData {
   city: string;
@@ -21,12 +22,12 @@ interface ForecastData {
 const WeatherApp: FC = () => {
   const [weatherData, setWeatherData] = useState<Record<string, WeatherData>>({});
   const [forecastData, setForecastData] = useState<Record<string, ForecastData[]>>({});
-  const [selectedCity, setSelectedCity] = useState<string>('Tokyo');
-  const cities = ['Tokyo', 'New York', 'Moscow'];
+  const [selectedCity, setSelectedCity] = useState<string>(CITIES[0]);
+
 
   useEffect(() => {
     const fetchData = async () => {
-      const { weatherDataResults, forecastDataResults } = await fetchWeather(cities, process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY!);
+      const { weatherDataResults, forecastDataResults } = await fetchWeather(CITIES, process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY!);
       setWeatherData(weatherDataResults);
       setForecastData(forecastDataResults);
     };
@@ -40,7 +41,7 @@ const WeatherApp: FC = () => {
     <div>
       <div className="weather-app">
         <div className="city-tabs">
-          {cities.map((city) => (
+          {CITIES.map((city) => (
             <button key={city} onClick={() => setSelectedCity(city)} className={selectedCity === city ? 'active' : ''}>
               {city.toUpperCase()}
             </button>
@@ -63,7 +64,7 @@ const WeatherApp: FC = () => {
             </div>
             <div className="future-weather">
               {forecastData[selectedCity]?.map((forecast, index) => (
-                <Forecast key={forecast.day} day={index === 0 ? "TOMORROW" : forecast.day.toUpperCase()} temperature={forecast.temperature} />
+                <Forecast key={forecast.day} day={index === 0 ? TOMORROW : forecast.day.toUpperCase()} temperature={forecast.temperature} />
               ))}
             </div>
           </div>
