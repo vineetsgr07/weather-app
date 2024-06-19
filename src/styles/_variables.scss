@@ -1,0 +1,24 @@
+// _variables.scss
+
+$font-family: 'Arial, sans-serif';
+$background-color: #f5f5f5;
+$color-black: #000;
+$color-white: #fff;
+$color-grey: #e1dcd7;
+$color-grey-light: #c0c0c0;
+$color-grey-dark: #555;
+$color-blue: #54b9b9;
+$color-green: #5fc377;
+
+$border-radius: 8px;
+$padding: 20px;
+$margin: 0;
+$font-size-large: clamp(28px, 10vw, 68px);
+$font-size-medium-large: 28px;
+$font-size-medium: 20px;
+$font-size-small: 16px;
+$font-size-temperature: clamp(40px, 8vw, 48px);
+$font-size-not-supported: clamp(8px, 6vw, 36px);
+
+$gap: 10px;
+$max-width: 1000px;

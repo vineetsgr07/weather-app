@@ -1,0 +1,202 @@
+// styles.scss
+
+@import 'variables';
+@import 'mixins';
+
+body {
+  font-family: $font-family;
+  background-color: $background-color;
+  margin: $margin;
+  padding: $margin;
+}
+
+.weather-app {
+  @include flex-column;
+  padding: $padding;
+  max-width: $max-width;
+  margin: $margin auto;
+  user-select: none;
+}
+
+.city-tabs {
+  @include flex-center;
+  width: 100%;
+  max-width: $max-width;
+  margin-bottom: 15px;
+  user-select: none;
+  
+  button {
+    flex: 1;
+    background-color: $color-grey;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 10px 20px;
+    font-size: $font-size-small;
+    font-weight: bold;
+    transition: background-color 0.1s;
+    user-select: none;
+
+    &.active {
+      background-color: $color-black;
+      color: $color-white;
+    }
+
+  }
+}
+
+.weather-display {
+  padding: 0 5px;
+  width: 100%;
+  max-width: $max-width;
+  display: grid;
+  grid-template-areas:
+    "city-name city-name future-weather"
+    "current-weather weather-icon future-weather";
+  grid-template-columns: 2fr 2fr 2fr;
+  gap: 10px;
+
+  .city-name {
+    grid-area: city-name;
+    background-color: $color-black;
+    color: $color-white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: $border-radius;
+    width: 100%;
+    padding: $padding;
+    @include flex-center;
+    overflow: hidden;
+    margin: $margin auto;
+    font-size: $font-size-large;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .current-weather,
+  .weather-icon,
+  .future-weather {
+    border-radius: $border-radius;
+    padding: $padding;
+    @include flex-column;
+    text-align: center;
+
+    .label{
+      font-size: $font-size-small;
+    }
+  }
+
+  .current-weather {
+    grid-area: current-weather;
+    background-color: $color-blue;
+    color: $color-white;
+  }
+
+  .weather-icon {
+    grid-area: weather-icon;
+    background-color: $color-green;
+    color: $color-white;
+    font-size: $font-size-medium;
+    
+    .label {
+      font-size: $font-size-small
+
+    }
+  }
+
+  .future-weather {
+    grid-area: future-weather;
+    background-color: $color-grey;
+    justify-content: space-around;
+
+    .forecast {
+      @include flex-column;
+      padding: 20px 0;
+    }
+
+    .day {
+      font-size: $font-size-small;
+      color: $color-black;
+      font-weight: 600;
+    }
+    .temperature {
+      font-size: $font-size-medium-large;
+      color: $color-black;
+      font-weight: bold;
+    }
+  }
+
+  .temperature {
+    font-size: $font-size-temperature;
+    color: $color-white;
+  }
+
+  .label {
+    margin-top: 10px;
+    font-size: $font-size-medium;
+    color: $color-white;
+  }
+
+}
+
+.not-supported {
+  display: none;
+  color: #555;
+  text-align: center;
+  padding: 20px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(8px, 6vw, 36px);
+}
+
+@media (max-width: 480px) {
+  .weather-display {
+    grid-template-areas:
+      "city-name"
+      "current-weather"
+      "weather-icon"
+      "future-weather";
+    grid-template-columns: 1fr;
+  }
+
+  .city-tabs {
+    flex-direction: column;
+
+    button {
+      max-width: none;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px 0;
+      font-size: 14px;
+    }
+  }
+
+  .city-name,
+  .current-weather,
+  .weather-icon,
+  .future-weather {
+    height: auto;
+  }
+
+  .city-name {
+    font-size: clamp(18px, 8vw, 48px);
+  }
+}
+
+@media (max-width: 210px) {
+  .weather-app,
+  .city-tabs,
+  .weather-display {
+    display: none;
+  }
+
+  .not-supported {
+    display: block;
+  }
+}
