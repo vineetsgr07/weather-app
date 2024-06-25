@@ -37,5 +37,6 @@
     "tailwindcss": "^3.4.1",
     "ts-jest": "^29.1.5",
     "typescript": "^5"
-  }
+  },
+  "packageManager": "yarn@3.1.0+sha512.5b7a2bfac1bfa4303a62480bf50bc008899b71534a353e45fb683492995e98b3869cb89be01d454cb8b87784833e7738fc26e5a161485b284d2fd2f47beb3159"
 }
