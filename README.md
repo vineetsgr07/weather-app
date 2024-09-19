@@ -2,6 +2,8 @@
 
 A simple weather application built with Next.js that displays real-time weather data for three cities using the OpenWeatherMap API.
 
+### [Demo](https://weather-app-zeta-swart.vercel.app/)
+
 ## Features
 
 - Displays current weather and 3-day forecast for selected cities.
